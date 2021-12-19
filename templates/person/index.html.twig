@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create • edit person{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <div class="row">
+        <h1>Please enter person details</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_label(form.firstName) }}
+            {{ form_widget(form.firstName) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_label(form.dateOfBirth) }}
+            {{ form_widget(form.dateOfBirth) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
