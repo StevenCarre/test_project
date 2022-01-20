@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="5d237afb-b20e-4f34-a0cd-49827002e21f" name="test_project_horus">
+      <webServer id="5d237afb-b20e-4f34-a0cd-49827002e21f" name="test_project_horus" url="/">
         <fileTransfer rootFolder="/hdd/data1/hades/projects/test_project/htdocs" accessType="SFTP" host="horus.lan" port="22" sshConfigId="0c1daa01-d04e-4576-9735-9f811c088e3a" sshConfig="hades@horus.lan:22 password">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />

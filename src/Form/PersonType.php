@@ -15,12 +15,15 @@ class PersonType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Last name'
+                'label' => 'Nom'
             ])
             ->add('firstName', TextType::class, [
-                'label' => 'First Name'
+                'label' => 'Prénom'
             ])
-            ->add('dateOfBirth', DateType::class, [])
+            ->add('dateOfBirth', DateType::class, [
+                'label' => 'Date de naissance',
+                'widget' => 'single_text'
+            ])
         ;
     }
 

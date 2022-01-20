@@ -5,25 +5,31 @@
 {% block body %}
     {{ form_start(form) }}
     <div class="row">
-        <h1>Please enter person details</h1>
+        <h1>Entrez une personne</h1>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            {{ form_label(form.name) }}
-            {{ form_widget(form.name) }}
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 form-group">
             {{ form_label(form.firstName) }}
-            {{ form_widget(form.firstName) }}
+            {{ form_widget(form.firstName, {'attr':{'class': 'form-control'}}) }}
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            {{ form_label(form.dateOfBirth) }}
-            {{ form_widget(form.dateOfBirth) }}
+        <div class="col-md-6 form-group">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name, {'attr':{'class': 'form-control'}}) }}
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6 form-group">
+            {{ form_label(form.dateOfBirth) }}
+            {{ form_widget(form.dateOfBirth, {'attr':{'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <button class="btn btn-primary" type="submit">Soumettre</button>
+        </div>
+    </div>
+
     {{ form_end(form) }}
 {% endblock %}

@@ -2,33 +2,44 @@
 
 namespace App\Controller;
 
+use App\Entity\Person;
 use App\Form\PersonType;
 use App\Repository\PersonRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PersonController extends AbstractController
 {
     protected $personRepository;
 
-    public function __construct(PersonRepository $personRepository)
+
+    protected $entityManager;
+
+    public function __construct(PersonRepository $personRepository, EntityManagerInterface $entityManager)
     {
         $this->personRepository = $personRepository;
+        $this->entityManager = $entityManager;
     }
 
     /**
-     * @Route("/person", name="person_edit")
+     * @Route("/person/edit/{id}", name="person_edit")
      */
-    public function edit(Request $request): Response
+    public function edit(?int $id = null, Request $request): Response
     {
-        $form = $this->createForm(PersonType::class);
+        $person = $id ? $this->personRepository->find($id) : new Person;
+
+        $form = $this->createForm(PersonType::class, $person);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted()) {
             if ($form->isValid()) {
+                $this->entityManager->persist($person);
+                $this->entityManager->flush();
+                
                 return $this->redirectToRoute('person_list');
             }
         }
@@ -43,6 +54,9 @@ class PersonController extends AbstractController
     public function index(Request $request): Response
     {
         $persons = $this->personRepository->findAll();
-        dd($persons);
+
+        return $this->render("person/list.html.twig", [
+            'persons' => $persons,
+        ]);
     }
 }

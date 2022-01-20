@@ -32,6 +32,17 @@ class Person
      */
     private $dateOfBirth;
 
+    /**
+     * @param mixed $id
+     */
+    public function getAge(): int
+    {
+        $currentDate = new \DateTime();
+        $timeElapsed = date_diff($this->dateOfBirth, $currentDate);
+
+        return $timeElapsed->format('%Y');
+    }
+
     public function getId(): ?int
     {
         return $this->id;
